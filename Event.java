@@ -17,4 +17,6 @@ public abstract class Event implements Serializable {
 		   return (dateFormat.format(date));
 	}
 	
+	abstract int getArraySize();
+	
 }
