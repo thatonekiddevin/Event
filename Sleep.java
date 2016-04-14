@@ -20,5 +20,9 @@ public class Sleep extends Event implements Serializable {
 	String getTime(int ArrayIndex) {
 		return sleepTimeArray.get(ArrayIndex);
 	}
+
+	int getArraySize() {
+		return sleepTimeArray.size();
+	}
 	
 }
