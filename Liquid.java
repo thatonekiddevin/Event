@@ -20,4 +20,7 @@ public class Liquid extends Event implements Serializable {
 		return liquidTimeArray.get(ArrayIndex);
 	}
 
+	int getArraySize() {
+		return liquidTimeArray.size();
+	}
 }
