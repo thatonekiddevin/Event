@@ -20,4 +20,8 @@ public class Steps extends Event implements Serializable {
 		return stepsTimeArray.get(ArrayIndex);
 	}
 
+	int getArraySize() {
+		return stepsTimeArray.size();
+	}
+
 }
