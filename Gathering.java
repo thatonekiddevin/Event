@@ -1,50 +1,41 @@
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Gathering {
 	
-	private Sleep sleepEvent = new Sleep();
-	private Liquid liquidEvent = new Liquid();
-	private Steps stepEvent = new Steps();
-	private EventIO Serializable = new EventIO();
-	private Reporting report;
+	private ArrayList<Event> eventHolder = new ArrayList<Event>();
 	
 	public Gathering() {
 		
-		File stepsFile = new File("Steps.txt");
-		if (stepsFile.exists()) {
-			stepEvent = Serializable.readSteps();
+	}
+	
+	public void newEvent(String eventType, int amount) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		Date date = new Date();
+		
+		if (eventType.equals("Liquid")) {
+			Liquid Liquid = new Liquid(dateFormat.format(date), amount);
+			eventHolder.add(Liquid);
 		}
-		File sleepFile = new File("Sleep.txt");
-		if (sleepFile.exists()) {
-			sleepEvent = Serializable.readSleep();
+		else if (eventType.equals("Steps")) {
+			Steps Steps = new Steps(dateFormat.format(date), amount);
+			eventHolder.add(Steps);
 		}
-		File liquidFile = new File("Liquid.txt");
-		if (liquidFile.exists()) {
-			liquidEvent = Serializable.readLiquid();
+		else {
+			Sleep Sleep = new Sleep(dateFormat.format(date), amount);
 		}
 		
-		report = new Reporting(liquidEvent, stepEvent, sleepEvent);
+	}
+	
+	public void override() {
 		
 	}
 	
-	public void addLiquid(int addAmount) {
-		liquidEvent.Set(addAmount, liquidEvent.TimeStamp());
-		Serializable.writeLiquid(liquidEvent);
+	public void delete() {
+		
 	}
-	
-	public void addSteps(int addAmount) {
-		stepEvent.Set(addAmount, stepEvent.TimeStamp());
-		Serializable.writeSteps(stepEvent);
-	}
-	
-	public void addSleep(int addAmount) {
-		sleepEvent.Set(addAmount, sleepEvent.TimeStamp());
-		Serializable.writeSleep(sleepEvent);
-	}
-	
-	public String testLiquidReport(String date) {
-		return report.reportLiquidDay(date);
-	}
-	
-	
 }

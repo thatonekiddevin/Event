@@ -1,42 +1,46 @@
+import java.util.ArrayList;
 
 public class Reporting {
 	
-	private Liquid liquidEvent = new Liquid();
-	private Steps stepsEvent = new Steps();
-	private Sleep sleepEvent = new Sleep();
 	private int[] Calendar = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
 	
-	public Reporting(Liquid liquidObject, Steps stepObject, Sleep sleepObject) {
-		
-		liquidEvent = liquidObject;
-		sleepEvent = sleepObject;
-		stepsEvent = stepObject;
+	public Reporting() {
 		
 	}
 	
-	public String reportLiquidDay(String date) {
+	public String reportDay(String date, ArrayList<Event> eventHolder, String eventType) {
 		String reportString = "";
 		
-		for (int loopIndex = 0; loopIndex < liquidEvent.getArraySize(); loopIndex++) {
-			if ((liquidEvent.getTime(loopIndex).substring(0, 10)).equals(date)) {
-				reportString += "Time: " + liquidEvent.getTime(loopIndex) + " Amount: " + Integer.toString(liquidEvent.getAmount(loopIndex)) + " | ";
+		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
+			if (eventHolder.get(arrayIndex).getClass().getSimpleName().equals(eventType) && eventHolder.get(arrayIndex).getTime().substring(0, 10).equals(date)) {
+				reportString += "Time: " + eventHolder.get(arrayIndex).getTime() + " Amount: " + eventHolder.get(arrayIndex).getAmount() + " | ";
 			}
 		}
 		
 		return reportString;
 	}
 	
-	/*public String reportLiquidWeek(String date) {
+	public String reportMonth(String month, ArrayList<Event> eventHolder, String eventType) {
+		String reportString = "";
 		
+		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
+			if (eventHolder.get(arrayIndex).getClass().getSimpleName().equals(eventType) && eventHolder.get(arrayIndex).getTime().substring(0,7).equals(month)) {
+				reportString += "Time: " + eventHolder.get(arrayIndex).getTime() + " Amount: " + eventHolder.get(arrayIndex).getAmount() + " | ";
+			}
+		}
+		
+		return reportString;
 	}
 	
-	public String reportLiquidMonth(int month) {
+	public String reportLiquidYear(String year, ArrayList<Event> eventHolder, String eventType) {
+		String reportString = "";
 		
-	}
-	
-	public String reportLiquidYear(int year) {
+		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
+			if (eventHolder.get(arrayIndex).getClass().getSimpleName().equals(eventType) && eventHolder.get(arrayIndex).getTime().substring(0, 4).equals(year)) {
+				reportString += "Time: " + eventHolder.get(arrayIndex).getTime() + " Amount: " + eventHolder.get(arrayIndex).getAmount() + " | ";
+			}
+		}
 		
-	}
-	*/
-	
+		return reportString;
+	}	
 }

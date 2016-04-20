@@ -11,20 +11,20 @@ import java.io.OutputStream;
 
 public class EventIO {
 	
-	public EventIO() {
+public EventIO() {
 		
 	}
 	
-	public void writeSleep(Sleep sleepObject) {
+	public void writeSleep(Gathering gatherObject) {
 		try
 		{
-	    	FileOutputStream fileOutputStreamSleep = new FileOutputStream("Sleep.txt", false);
-	    	OutputStream bufferSleep = new BufferedOutputStream(fileOutputStreamSleep);
-	    	ObjectOutputStream outputSleep = new ObjectOutputStream(bufferSleep);
+	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.ser", false);
+	    	OutputStream buffer = new BufferedOutputStream(fileOutputStream);
+	    	ObjectOutputStream output = new ObjectOutputStream(buffer);
 	    	
-	    	outputSleep.writeObject(sleepObject);
+	    	output.writeObject(gatherObject);
 	    	
-	    	outputSleep.close();
+	    	output.close();
 		}
 		catch (FileNotFoundException fileNotFoundEx)
 		{
@@ -37,67 +37,19 @@ public class EventIO {
 		}
 	}
 	
-	public void writeLiquid(Liquid liquidObject) {
-		try
-		{
-	    	
-	    	FileOutputStream fileOutputStreamLiquid = new FileOutputStream("Liquid.txt", false);
-	    	OutputStream bufferLiquid = new BufferedOutputStream(fileOutputStreamLiquid);
-	    	ObjectOutputStream outputLiquid = new ObjectOutputStream(bufferLiquid);
-	    	
-	    	outputLiquid.writeObject(liquidObject);
-	    	
-	    	outputLiquid.close();
-		}
-		catch (FileNotFoundException fileNotFoundEx)
-		{
-		  System.out.println("Invalid file name");
-		}
-		catch (IOException ioEx)
-		{
-		  System.out.println("Problem creating object stream");
-		  
-		}
-	}
-	
-	public void writeSteps(Steps stepsObject) {
-		try
-		{
-	    	
-	    	FileOutputStream fileOutputStreamSteps = new FileOutputStream("Steps.txt", false);
-	    	OutputStream bufferSteps = new BufferedOutputStream(fileOutputStreamSteps);
-	    	ObjectOutputStream outputSteps = new ObjectOutputStream(bufferSteps);
-	    	
-	    	outputSteps.writeObject(stepsObject);
-	    	
-	    	
-	    	outputSteps.close();
-		}
-		catch (FileNotFoundException fileNotFoundEx)
-		{
-		  System.out.println("Invalid file name");
-		}
-		catch (IOException ioEx)
-		{
-		  System.out.println("Problem creating object stream");
-		  
-		}
-	}
-	
-	public Steps readSteps() {
-		
-		Steps stepEvent = new Steps();
+	public Gathering readSleep() {
+		Gathering gatherEvent = new Gathering();
 		
 		try
 		  {
-			FileInputStream listFile = new FileInputStream("Steps.txt");
+			FileInputStream listFile = new FileInputStream("Information.ser");
 			InputStream buffer = new BufferedInputStream(listFile);
 			ObjectInputStream inputFile = new ObjectInputStream(buffer);
 			
 
 			  try
 			  {
-				stepEvent = (Steps) inputFile.readObject();
+				gatherEvent = (Gathering) inputFile.readObject();
 				inputFile.close();
 			  }
 			  catch (ClassNotFoundException e)
@@ -116,75 +68,7 @@ public class EventIO {
 			System.out.println("BadFile");
 		  }
 		
-		return stepEvent;
+		return gatherEvent;
 	}
 	
-	public Liquid readLiquid() {
-		
-		Liquid liquidEvent = new Liquid();
-		
-		try
-		  {
-			FileInputStream listFile = new FileInputStream("Liquid.txt");
-			InputStream buffer = new BufferedInputStream(listFile);
-			ObjectInputStream inputFile = new ObjectInputStream(buffer);
-			
-
-			  try
-			  {
-				liquidEvent = (Liquid) inputFile.readObject();
-				inputFile.close();
-			  }
-			  catch (ClassNotFoundException e)
-			  {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			  }
-			
-		  }
-		  catch (FileNotFoundException fileIOEx)
-		  {
-			System.out.println("The file is not available");
-		  }
-		  catch (IOException IOEx)
-		  {
-			System.out.println("BadFile");
-		  }
-		
-		return liquidEvent;
-	}
-	
-	public Sleep readSleep() {
-		Sleep sleepEvent = new Sleep();
-		
-		try
-		  {
-			FileInputStream listFile = new FileInputStream("Sleep.txt");
-			InputStream buffer = new BufferedInputStream(listFile);
-			ObjectInputStream inputFile = new ObjectInputStream(buffer);
-			
-
-			  try
-			  {
-				sleepEvent = (Sleep) inputFile.readObject();
-				inputFile.close();
-			  }
-			  catch (ClassNotFoundException e)
-			  {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			  }
-			
-		  }
-		  catch (FileNotFoundException fileIOEx)
-		  {
-			System.out.println("The file is not available");
-		  }
-		  catch (IOException IOEx)
-		  {
-			System.out.println("BadFile");
-		  }
-		
-		return sleepEvent;
-	}
 }
