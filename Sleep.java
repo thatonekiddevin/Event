@@ -1,24 +1,29 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Sleep extends Event implements Serializable {
 	
-	private ArrayList<Integer> sleepArray = new ArrayList<Integer>();
-	private ArrayList<String> sleepTimeArray = new ArrayList<String>();
-
-	void Set(int setValue, String timeStamp) {
-		sleepArray.add(setValue);
-		sleepTimeArray.add(timeStamp);
-		System.out.println("You slept " + setValue + " hours at " + timeStamp);
-	}
-
-	int getAmount(int ArrayIndex) {
-		return sleepArray.get(ArrayIndex);
-		
+	private String sleepTime;
+	private int sleepAmount;
+	
+	public Sleep(String time, int amount) {
+		this.sleepAmount = amount;
+		this.sleepTime = time;
+		System.out.println("You slept " + this.sleepAmount + "hrs, recorded at " + this.sleepTime);
 	}
 	
-	String getTime(int ArrayIndex) {
-		return sleepTimeArray.get(ArrayIndex);
+	int getAmount() {
+		return this.sleepAmount;
 	}
 	
+	String getTime() {
+		return this.sleepTime;
+	}
+
+	void override(String time, int amount) {
+		this.sleepAmount = amount;
+		this.sleepTime = time;
+	}
+	
+	
+
 }

@@ -8,37 +8,25 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class EventIO {
 	
-	public EventIO() {
+public EventIO() {
 		
 	}
 	
-	public void writeSleep(Sleep sleepObject, Liquid liquidObject, Steps stepsObject) {
+	public void write(ArrayList<Event> eventHolder) {
 		try
 		{
-	    	FileOutputStream fileOutputStreamSleep = new FileOutputStream("Sleep.txt", false);
-	    	OutputStream bufferSleep = new BufferedOutputStream(fileOutputStreamSleep);
-	    	ObjectOutputStream outputSleep = new ObjectOutputStream(bufferSleep);
+	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.txt", true);
+	    	OutputStream buffer = new BufferedOutputStream(fileOutputStream);
+	    	ObjectOutputStream output = new ObjectOutputStream(buffer);
 	    	
-	    	outputSleep.writeObject(sleepObject);
+	    	output.writeObject(eventHolder);
+	    	System.out.println("Added to the file");
 	    	
-	    	FileOutputStream fileOutputStreamSteps = new FileOutputStream("Steps.txt", false);
-	    	OutputStream bufferSteps = new BufferedOutputStream(fileOutputStreamSteps);
-	    	ObjectOutputStream outputSteps = new ObjectOutputStream(bufferSteps);
-	    	
-	    	outputSteps.writeObject(stepsObject);
-	    	
-	    	FileOutputStream fileOutputStreamLiquid = new FileOutputStream("Liquid.txt", false);
-	    	OutputStream bufferLiquid = new BufferedOutputStream(fileOutputStreamLiquid);
-	    	ObjectOutputStream outputLiquid = new ObjectOutputStream(bufferLiquid);
-	    	
-	    	outputLiquid.writeObject(liquidObject);
-	    	
-	    	outputLiquid.close();
-	    	outputSteps.close();
-	    	outputSleep.close();
+	    	output.close();
 		}
 		catch (FileNotFoundException fileNotFoundEx)
 		{
@@ -47,54 +35,44 @@ public class EventIO {
 		catch (IOException ioEx)
 		{
 		  System.out.println("Problem creating object stream");
+		  System.out.println(ioEx.getClass() + " " + ioEx.getMessage());
+		  ioEx.printStackTrace();
 		  
 		}
 	}
 	
-	public void writeLiquid(Liquid liquidObject) {
+	@SuppressWarnings("unchecked")
+	public ArrayList<Event> read() {
+		ArrayList<Event> eventHolder = new ArrayList<Event>();
+		
 		try
-		{
-	    	
-	    	FileOutputStream fileOutputStreamLiquid = new FileOutputStream("Liquid.txt", false);
-	    	OutputStream bufferLiquid = new BufferedOutputStream(fileOutputStreamLiquid);
-	    	ObjectOutputStream outputLiquid = new ObjectOutputStream(bufferLiquid);
-	    	
-	    	outputLiquid.writeObject(liquidObject);
-	    	
-	    	outputLiquid.close();
-		}
-		catch (FileNotFoundException fileNotFoundEx)
-		{
-		  System.out.println("Invalid file name");
-		}
-		catch (IOException ioEx)
-		{
-		  System.out.println("Problem creating object stream");
-		  
-		}
+		  {
+			FileInputStream listFile = new FileInputStream("Information.txt");
+			InputStream buffer = new BufferedInputStream(listFile);
+			ObjectInputStream inputFile = new ObjectInputStream(buffer);
+			
+
+			  try
+			  {
+				eventHolder = (ArrayList<Event>) inputFile.readObject();
+				inputFile.close();
+			  }
+			  catch (ClassNotFoundException e)
+			  {
+				e.printStackTrace();
+			  }
+			
+		  }
+		  catch (FileNotFoundException fileIOEx)
+		  {
+			System.out.println("The file is not available");
+		  }
+		  catch (IOException IOEx)
+		  {
+			System.out.println("BadFile");
+		  }
+		
+		return eventHolder;
 	}
 	
-	public void writeSteps(Steps stepsObject) {
-		try
-		{
-	    	
-	    	FileOutputStream fileOutputStreamSteps = new FileOutputStream("Steps.txt", false);
-	    	OutputStream bufferSteps = new BufferedOutputStream(fileOutputStreamSteps);
-	    	ObjectOutputStream outputSteps = new ObjectOutputStream(bufferSteps);
-	    	
-	    	outputSteps.writeObject(stepsObject);
-	    	
-	    	
-	    	outputSteps.close();
-		}
-		catch (FileNotFoundException fileNotFoundEx)
-		{
-		  System.out.println("Invalid file name");
-		}
-		catch (IOException ioEx)
-		{
-		  System.out.println("Problem creating object stream");
-		  
-		}
-	}
 }

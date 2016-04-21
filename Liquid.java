@@ -1,23 +1,29 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Liquid extends Event implements Serializable {
 	
-	private ArrayList<Integer> liquidArray = new ArrayList<Integer>();
-	private ArrayList<String> liquidTimeArray = new ArrayList<String>();
+	private String liquidTime;
+	private int liquidAmount;
 	
-	void Set(int setValue, String timeStamp) {
-		liquidArray.add(setValue);
-		liquidTimeArray.add(timeStamp);
-		System.out.println("You drank  " + setValue + "L of liquids at  " + timeStamp);
+	public Liquid(String time, int amount) {
+		this.liquidAmount = amount;
+		this.liquidTime = time;
+		System.out.println("You drank " + this.liquidAmount + "fl oz, recorded at " + this.liquidTime);
 	}
-
-	int getAmount(int ArrayIndex) {
-		return liquidArray.get(ArrayIndex);
+	
+	int getAmount() {
+		return this.liquidAmount;
 	}
-
-	String getTime(int ArrayIndex) {
-		return liquidTimeArray.get(ArrayIndex);
+	
+	String getTime() {
+		return this.liquidTime;
 	}
-
+	
+	void override(String time, int amount) {
+		this.liquidAmount = amount;
+		this.liquidTime = time;
+	}
+	
+	
+	
 }

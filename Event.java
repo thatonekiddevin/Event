@@ -5,16 +5,11 @@ import java.text.SimpleDateFormat;
 
 public abstract class Event implements Serializable {
 	
-	abstract void Set(int setValue, String timeStamp);
+	abstract int getAmount();
 	
-	abstract int getAmount(int ArrayIndex);
+	abstract String getTime();
 	
-	abstract String getTime(int ArrayIndex);
+	abstract void override(String time, int amount);
 	
-	public String TimeStamp() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		   Date date = new Date();
-		   return (dateFormat.format(date));
-	}
-	
+
 }
