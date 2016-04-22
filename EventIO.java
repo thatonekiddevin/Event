@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class EventIO {
 	
@@ -15,14 +16,15 @@ public EventIO() {
 		
 	}
 	
-	public void writeSleep(Gathering gatherObject) {
+	public void write(ArrayList<Event> eventHolder) {
 		try
 		{
-	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.ser", false);
+	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.txt", false);
 	    	OutputStream buffer = new BufferedOutputStream(fileOutputStream);
 	    	ObjectOutputStream output = new ObjectOutputStream(buffer);
 	    	
-	    	output.writeObject(gatherObject);
+	    	output.writeObject(eventHolder);
+	    	System.out.println("Added to the file");
 	    	
 	    	output.close();
 		}
@@ -33,28 +35,30 @@ public EventIO() {
 		catch (IOException ioEx)
 		{
 		  System.out.println("Problem creating object stream");
+		  System.out.println(ioEx.getClass() + " " + ioEx.getMessage());
+		  ioEx.printStackTrace();
 		  
 		}
 	}
 	
-	public Gathering readSleep() {
-		Gathering gatherEvent = new Gathering();
+	@SuppressWarnings("unchecked")
+	public ArrayList<Event> read() {
+		ArrayList<Event> eventHolder = new ArrayList<Event>();
 		
 		try
 		  {
-			FileInputStream listFile = new FileInputStream("Information.ser");
+			FileInputStream listFile = new FileInputStream("Information.txt");
 			InputStream buffer = new BufferedInputStream(listFile);
 			ObjectInputStream inputFile = new ObjectInputStream(buffer);
 			
 
 			  try
 			  {
-				gatherEvent = (Gathering) inputFile.readObject();
+				eventHolder = (ArrayList<Event>) inputFile.readObject();
 				inputFile.close();
 			  }
 			  catch (ClassNotFoundException e)
 			  {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			  }
 			
@@ -68,7 +72,7 @@ public EventIO() {
 			System.out.println("BadFile");
 		  }
 		
-		return gatherEvent;
+		return eventHolder;
 	}
 	
 }

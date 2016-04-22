@@ -8,6 +8,7 @@ public class Steps extends Event implements Serializable {
 	public Steps(String time, int amount) {
 		this.stepsAmount = amount;
 		this.stepsTime = time;
+		System.out.println("You took " + this.stepsAmount + " steps, recorded at " + this.stepsTime);
 	}
 	
 	int getAmount() {
@@ -16,6 +17,11 @@ public class Steps extends Event implements Serializable {
 	
 	String getTime() {
 		return this.stepsTime;
+	}
+
+	void override(String time, int amount) {
+		this.stepsAmount = amount;
+		this.stepsTime = time;
 	}
 	
 	

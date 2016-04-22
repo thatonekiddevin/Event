@@ -8,5 +8,8 @@ public abstract class Event implements Serializable {
 	abstract int getAmount();
 	
 	abstract String getTime();
+	
+	abstract void override(String time, int amount);
+	
 
 }

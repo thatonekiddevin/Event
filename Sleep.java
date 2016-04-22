@@ -8,6 +8,7 @@ public class Sleep extends Event implements Serializable {
 	public Sleep(String time, int amount) {
 		this.sleepAmount = amount;
 		this.sleepTime = time;
+		System.out.println("You slept " + this.sleepAmount + "hrs, recorded at " + this.sleepTime);
 	}
 	
 	int getAmount() {
@@ -16,6 +17,11 @@ public class Sleep extends Event implements Serializable {
 	
 	String getTime() {
 		return this.sleepTime;
+	}
+
+	void override(String time, int amount) {
+		this.sleepAmount = amount;
+		this.sleepTime = time;
 	}
 	
 	

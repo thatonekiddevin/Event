@@ -8,6 +8,7 @@ public class Liquid extends Event implements Serializable {
 	public Liquid(String time, int amount) {
 		this.liquidAmount = amount;
 		this.liquidTime = time;
+		System.out.println("You drank " + this.liquidAmount + "fl oz, recorded at " + this.liquidTime);
 	}
 	
 	int getAmount() {
@@ -16,6 +17,11 @@ public class Liquid extends Event implements Serializable {
 	
 	String getTime() {
 		return this.liquidTime;
+	}
+	
+	void override(String time, int amount) {
+		this.liquidAmount = amount;
+		this.liquidTime = time;
 	}
 	
 	
