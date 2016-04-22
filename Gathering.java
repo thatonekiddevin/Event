@@ -48,17 +48,26 @@ public class Gathering {
 		String returnString = "";
 		
 		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
+<<<<<<< HEAD
 			returnString += "Amount: " + eventHolder.get(arrayIndex).getAmount() + " Time: " + eventHolder.get(arrayIndex).getTime() + " Event: " + eventHolder.get(arrayIndex).getClass().getSimpleName() + " | ";
+=======
+			returnString += "Amount: " + eventHolder.get(arrayIndex).getAmount() + " Time: " + eventHolder.get(arrayIndex).getTime() + " | ";
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 		}
 		
 		return returnString;
 	}
 	
+<<<<<<< HEAD
 	public void override(int oldAmount, int newAmount, String oldTime, String newTime, String eventType) {
 		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
 			if (eventHolder.get(arrayIndex).getClass().getSimpleName().equals(eventType) && eventHolder.get(arrayIndex).getAmount() == oldAmount && eventHolder.get(arrayIndex).getTime().equals(oldTime)) {
 				eventHolder.get(arrayIndex).override(newTime, newAmount);
 			}
+=======
+	public void override(int oldamount, int newAmount, String oldTime, String newTime) {
+		for (int arrayIndex = 0; arrayIndex < eventHolder.size(); arrayIndex++) {
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 		}
 	}
 	
@@ -82,7 +91,11 @@ public class Gathering {
 			return report.reportYear(date, eventHolder, eventType);
 		}
 		else {
+<<<<<<< HEAD
 			return report.reportWeek(date, eventHolder, eventType);
+=======
+			return "week";
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 		}
 	}
 	

@@ -19,7 +19,11 @@ public EventIO() {
 	public void write(ArrayList<Event> eventHolder) {
 		try
 		{
+<<<<<<< HEAD
 	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.txt", false);
+=======
+	    	FileOutputStream fileOutputStream = new FileOutputStream("Information.txt", true);
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 	    	OutputStream buffer = new BufferedOutputStream(fileOutputStream);
 	    	ObjectOutputStream output = new ObjectOutputStream(buffer);
 	    	

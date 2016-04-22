@@ -3,11 +3,23 @@ import java.io.File;
 
 public class Driver {
 	
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		
 		String date = "2016/04/18";
 		String newDate = date.replace(date.substring(8, 10), Integer.toString(Integer.parseInt(date.substring(8,10))+1));
 		System.out.println(newDate);
+=======
+	//Event Sleep = new Sleep();
+	//Sleep.Set(15, Sleep.TimeStamp());
+	//System.out.println(Sleep.getAmount(0));
+	
+	public static void main(String[] args) {
+		
+		//String date = "2016/04/18";
+		//String newDate = date.replace(date.substring(8, 10), Integer.toString(Integer.parseInt(date.substring(8,10))+1));
+		//System.out.println(newDate);
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 		
 		Gathering gather = new Gathering();
 		
@@ -37,18 +49,30 @@ public class Driver {
 				System.out.println("Please enter the amount of liquids you've drank in FL OZs.");
 				int setValue = in.nextInt();
 				gather.newEvent("Liquid", setValue);
+<<<<<<< HEAD
+=======
+				gather.save();
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 			}
 			else if (choice.equals("2"))
 			{
 				System.out.println("Please enter the amount of sleep you had.");
 				int setValue = in.nextInt();
 				gather.newEvent("Sleep", setValue);
+<<<<<<< HEAD
+=======
+				gather.save();
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 			}
 			else if (choice.equals("3"))
 			{
 				System.out.println("Please enter the amount of steps you took. ");
 				int setValue = in.nextInt();
 				gather.newEvent("Steps", setValue);
+<<<<<<< HEAD
+=======
+				gather.save();
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 			}
 			else if (choice.equals("4"))
 			{
@@ -86,7 +110,11 @@ public class Driver {
 				}
 				
 			}
+<<<<<<< HEAD
 			else if (choice.equals("7"))
+=======
+			/*else if (choice.equals("7"))
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 			{
 				System.out.println("Please choose what type of data you want displayed for the week.");
 				System.out.println("1. Liquid Data.");
@@ -96,24 +124,39 @@ public class Driver {
 				
 				if (choice.equals("1"))
 				{
+<<<<<<< HEAD
 					System.out.println("Enter the first day of the week: (YYYY/MM/DD) ");
 					String dlDate = in.nextLine();
 					System.out.println(gather.report("Liquid", "Week", dlDate));
+=======
+					System.out.println(gather.liquidReport("2016/04/17", 2));
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 				}
 				else if (choice.equals("2"))
 				{
 					System.out.println("Enter the first day of the week: (YYYY/MM/DD) ");
 					String dlDate = in.nextLine();
+<<<<<<< HEAD
 					System.out.println(gather.report("Sleep", "Week", dlDate));
+=======
+					gather.sleepReport(dlDate, 2);
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 				}
 				else if (choice.equals("3"))
 				{
 					System.out.println("Enter the first day of the week: (YYYY/MM/DD) ");
 					String dlDate = in.nextLine();
+<<<<<<< HEAD
 					System.out.println(gather.report("Steps", "Week", dlDate));
 				}
 			}
 			
+=======
+					gather.stepsReport(dlDate, 2);
+				}
+			}
+			*/
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 			else if (choice.equals("8"))
 			{
 				System.out.println("Please choose what type of data you want displayed for the month.");
@@ -151,19 +194,31 @@ public class Driver {
 				
 				if (choice.equals("1"))
 				{
+<<<<<<< HEAD
 					System.out.println("Enter the year (YYYY)");
+=======
+					System.out.println("Enter the month (YYYY/MM)");
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 					String dlDate = in.nextLine();
 					System.out.println(gather.report("Liquid", "Year", dlDate));
 				}
 				else if (choice.equals("2"))
 				{
+<<<<<<< HEAD
 					System.out.println("Enter the year (YYYY)");
+=======
+					System.out.println("Enter the month (YYYY/MM)");
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 					String dlDate = in.nextLine();
 					System.out.println(gather.report("Steps", "Year", dlDate));;
 				}
 				else if (choice.equals("3"))
 				{
+<<<<<<< HEAD
 					System.out.println("Enter the year (YYYY)");
+=======
+					System.out.println("Enter the month (YYYY/MM)");
+>>>>>>> 68ebd70d8bd1812604772f497430798c0edbca60
 					String dlDate = in.nextLine();
 					System.out.println(gather.report("Sleep", "Year", dlDate));
 				}
